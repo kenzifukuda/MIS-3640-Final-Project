@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Recipe Search</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: aliceblue;
+}
+h1 {
+  background-color:aliceblue;
+  padding: 20px;
+  text-align: center;
+}
+
+.column {
+  float: center;
+  width: 50%;
+  padding: 15px;
+}
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<div class='header'>
+  <h1>Food Food Food</h1>
+
+<div class="row">
+  <div class="column">
+    <h2>Input a Food and Get Nutrition Facts</h2>
+    <form method="POST" name="food_search">
+      {% if error %}
+      <p style="color:red">This food does not exist.</p>
+      {% endif %}
+      
+      <p>
+        <input type="text" size="4" name="food" /> Food
+      </p>
+      <p>
+        <input type="submit" value="Find the Food" />
+      </p>
+    </form>
+  </div>
+</div>
+</body>
+</html>

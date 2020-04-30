@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Recipe Search</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background-color: aliceblue;
+}
+h1 {
+  background-color:aliceblue;
+  padding: 20px;
+  text-align: center;
+}
+
+.column {
+  float: center;
+  width: 50%;
+  padding: 15px;
+}
+.row:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+<div class='header'>
+  <h1>Food Food Food</h1>
+
+<div class="row">
+  <div class="column">
+    <h2>Input Ingredients and Find Recipes with Those Ingredients</h2>
+    <form method="POST" name="recipe_search">
+      {% if error %}
+      <p style="color:red">There are no recipes with these ingredients.</p>
+      {% endif %}
+      
+      <p>
+        <input type="text" size="4" name="ingredient 1" /> Ingredient 1
+        <input type="text" size="4" name="ingredient 2" /> Ingredient 2
+      </p>
+      <p>
+        <input type="submit" value="Find a Recipe" />
+      </p>
+    </form>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Welcome</title>
+  <style>
+  .topnav {
+    overflow: hidden
+    background-color: #333;
+  }
+  .topnav a {
+  float: center;
+  display: block;
+  color: black;
+  text-align:center;
+  padding: 14px 16px;
+  text-decoration: none;
+  }
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  }
+  </style>
+  </head>
+
+  <body>
+    <h1 style="color: black; text-align: center;">Search</h1>
+    <div class="topnav">
+      <a href="{{ url_for('recipe_search') }}">Search Recipes</a>
+      <a href="{{ url_for('food_search') }}">Search Food</a>
+    </div> 
+    
+
+  </body>
+</html>
