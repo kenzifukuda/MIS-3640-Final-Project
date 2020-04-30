@@ -17,10 +17,11 @@ def recipe_search():
         recipe_title = recipes[0]
         ingredientsList = recipes[1]
         recipe_link = recipes[2]
+        recipe_id = recipes[3]
         
         if recipes:
             return render_template(
-                "recipe_results.html", ingredient1=ingredient1, ingredient2=ingredient2, recipe_title=recipe_title, ingredientsList=ingredientsList, recipe_link=recipe_link
+                "recipe_results.html", ingredient1=ingredient1, ingredient2=ingredient2, recipe_title=recipe_title, ingredientsList=ingredientsList, recipe_link=recipe_link, recipe_id=recipe_id
             )
         else:
             return render_template("search.html", error=True)

@@ -20,11 +20,6 @@ def get_json(url):
     response_data = json.loads(response_text)
     return response_data
 
-# def f(*ingredients):
-#     ings = '&q='.join(ingredients)
-#     url = f'{base_url}/search?q={ingredient1}%2C{ingredient2}&app_id={id_num}&app_key={key}&from=0&to=1'
-
-
 def recipes_from_ingredients(ingredient1, ingredient2):
     ingredient1 = ingredient1.replace(' ', '%20')
     ingredient2 = ingredient2.replace(' ', '%20')
@@ -33,9 +28,22 @@ def recipes_from_ingredients(ingredient1, ingredient2):
     recipe_title = json_data['hits'][0]['recipe']['label']
     ingredients_list = json_data['hits'][0]['recipe']['ingredientLines']
     recipe_url = json_data['hits'][0]['recipe']['url']
-    return recipe_title, ingredients_list, recipe_url
-# pprint(recipes_from_ingredients('chicken','lemon'))
+    recipe_uri = json_data['hits'][0]['recipe']['uri']
+    return recipe_title, ingredients_list, recipe_url, recipe_uri
+pprint(recipes_from_ingredients('chicken','lemon'))
 
+def recipe_nutrition(ingredient1, ingredient2):
+    recipe_info = tuple(recipes_from_ingredients(ingredient1, ingredient2))
+    recipe_id = recipe_info[3]
+    recipe_id = recipe_id.replace(':', '%3A')
+    recipe_id = recipe_id.replace('/', '%2F')
+    recipe_id = recipe_id.replace('#', '%23')
+    url = f'{base_url}/search?r={recipe_id}&app_id={rid_num}&app_key={r_key}'
+    json_data = get_json(url)
+    recipe_calories = json_data[0]['calories']
+    
+    return recipe_nutrition
+# pprint(recipe_nutrition('chicken', 'lemon'))
 
 def find_food(food_name):
     food_name = food_name.replace(' ', '%20')
