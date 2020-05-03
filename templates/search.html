@@ -1,43 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Recipe Search</title>
-<style>
-* {
-  box-sizing: border-box;
-}
-body {
-  margin: 0;
+  <title>Recipe Search</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+  <style>
+  body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+  .w3-bar-block .w3-bar-item {padding:20px}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-gap: 10px;
   background-color: aliceblue;
-}
-h1 {
-  background-color:aliceblue;
-  padding: 20px;
-  text-align: center;
+  padding: 10px;
+  align-content: center;
+  justify-content: center;
 }
 
-.column {
-  float: center;
-  width: 50%;
-  padding: 15px;
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  align-content: center;
+  justify-content: center;
 }
-.row:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-@media screen and (max-width: 600px) {
-  .column {
-    width: 100%;
-  }
-}
+
 </style>
 </head>
 <body>
-<div class='header'>
-  <h1>Food Food Food</h1>
+  <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()"
+    class="w3-bar-item w3-button">Close Menu</a>
+    <a href="{{ url_for('welcome') }}" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+    <a href="{{ url_for('why') }}" onclick="w3_close()" class="w3-bar-item w3-button">About This Project</a>
+    <a href="{{ url_for('food_search') }}" onclick="w3_close()" class="w3-bar-item w3-button">Search Food</a>
+    <a href="{{ url_for('recipe_search') }}" onclick="w3_close()" class="w3-bar-item w3-button">Search Recipes</a>
+  </nav>  
+ 
+  <div class="w3-top">
+    <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+      <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+      <div class="w3-center w3-padding-16">Recipe Search</div>
+    </div>
+  </div>
 
+<div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px"></div>
+
+<div class="grid-container">
 <div class="row">
   <div class="column">
     <h2>Input Ingredients and Find Recipes with Those Ingredients</h2>
@@ -56,5 +69,17 @@ h1 {
     </form>
   </div>
 </div>
+</div>
+
+<script>
+  // Script to open and close sidebar
+  function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+  }
+   
+  function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+  }
+  </script>
 </body>
 </html>

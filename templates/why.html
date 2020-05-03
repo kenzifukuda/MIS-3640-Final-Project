@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>About The Project</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+  .topnav {
+    overflow: hidden
+    background-color: #333;
+  }
+  .topnav a {
+  float: center;
+  display: block;
+  color: black;
+  text-align:center;
+  padding: 14px 16px;
+  text-decoration: none;
+  }
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  }
+  </style>
+  </head>
+
+  <body>
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+        <a href="javascript:void(0)" onclick="w3_close()"
+        class="w3-bar-item w3-button">Close Menu</a>
+        <a href="{{ url_for('welcome') }}" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+        <a href="{{ url_for('food_search') }}" onclick="w3_close()" class="w3-bar-item w3-button">Search Food</a>
+        <a href="{{ url_for('recipe_search') }}" onclick="w3_close()" class="w3-bar-item w3-button">Search Recipes</a>
+      </nav>   
+      <div class="w3-top">
+        <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+          <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+          <div class="w3-center w3-padding-16">About The Project</div>
+        </div>
+      </div>
+      <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px"></div>
+    <p>This website was created as the final project for MIS3640 Problem Solving and Software Design</p>
+    <p>The idea for this project initially came from a lack of inspiration from looking at food in my own fridge. This website is helpful when I have too much of one ingredient and no recipe in mind to use that specific ingredient. It is also helpful to search the nutrition facts for foods that don't always have labels such as fresh fruits, vegetables, and meat. </p>
+    <p>The main functions of this website are to input ingredients and get recipe recommendations based on the inputs, and to find nutrition facts for specific food inputs. The recipe recommendations provide the user with the title, measurements and ingredients, url to the recipe website, and recipe nutrition facts.</p>
+    <p>Any two ingredients can be used as inputs for the recipe search, and the food search can either be singular food items, or paired food items. For example, "chicken and rice" will return the nutrition facts for the combined consumption of those foods.</p>
+    <script>
+        // Script to open and close sidebar
+        function w3_open() {
+          document.getElementById("mySidebar").style.display = "block";
+        }
+         
+        function w3_close() {
+          document.getElementById("mySidebar").style.display = "none";
+        }
+        </script>
+  </body>
+</html>

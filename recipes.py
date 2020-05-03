@@ -27,29 +27,31 @@ def recipes_from_ingredients(ingredient1, ingredient2):
     json_data = get_json(url)
     recipe_title = json_data['hits'][0]['recipe']['label']
     ingredients_list = json_data['hits'][0]['recipe']['ingredientLines']
+    recipe_nutrients = json_data['hits'][0]['recipe']['totalNutrients']
     recipe_url = json_data['hits'][0]['recipe']['url']
-    recipe_uri = json_data['hits'][0]['recipe']['uri']
-    return recipe_title, ingredients_list, recipe_url, recipe_uri
-pprint(recipes_from_ingredients('chicken','lemon'))
+    image_url = json_data['hits'][0]['recipe']['image']
+    return recipe_title, ingredients_list, recipe_nutrients, recipe_url, image_url
+# pprint(recipes_from_ingredients('chicken','lemon'))
 
-def recipe_nutrition(ingredient1, ingredient2):
-    recipe_info = tuple(recipes_from_ingredients(ingredient1, ingredient2))
-    recipe_id = recipe_info[3]
-    recipe_id = recipe_id.replace(':', '%3A')
-    recipe_id = recipe_id.replace('/', '%2F')
-    recipe_id = recipe_id.replace('#', '%23')
-    url = f'{base_url}/search?r={recipe_id}&app_id={rid_num}&app_key={r_key}'
-    json_data = get_json(url)
-    recipe_calories = json_data[0]['calories']
-    
-    return recipe_nutrition
-# pprint(recipe_nutrition('chicken', 'lemon'))
+# def recipe_nutrition(ingredient1, ingredient2):
+#     recipe_info = tuple(recipes_from_ingredients(ingredient1, ingredient2))
+#     recipe_id = recipe_info[3]
+#     recipe_id = recipe_id.replace(':', '%3A')
+#     recipe_id = recipe_id.replace('/', '%2F')
+#     recipe_id = recipe_id.replace('#', '%23')
+#     url = f'{base_url}/search?r={recipe_id}&app_id={rid_num}&app_key={r_key}'
+#     json_data = get_json(url)
+#     recipe_calories = json_data[0]['calories']
+#     return recipe_nutrition
+# # pprint(recipe_nutrition('chicken', 'lemon'))
 
 def find_food(food_name):
     food_name = food_name.replace(' ', '%20')
     url = f'{base_url}/api/food-database/parser?app_id={fid_num}&app_key={f_key}&ingr={food_name}&nutrition-type=logging'
     json_data = get_json(url)
-    return json_data['hints'][0]['food']['nutrients']
+    nutrients = json_data['hints'][0]['food']['nutrients']
+    image_url = json_data['hints'][0]['food']['image']
+    return nutrients, image_url
 
 # pprint(find_food('red apple'))
 

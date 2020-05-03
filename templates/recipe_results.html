@@ -2,16 +2,103 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Karma">
+    <style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Karma", sans-serif}
+    .w3-bar-block .w3-bar-item {padding:20px}
+    .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+  grid-gap: 10px;
+  background-color: aliceblue;
+  padding: 10px;
+  align-content: center;
+  justify-content: center;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.item1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+.item2 {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.item3 {
+  grid-column: 1;
+  grid-row: 2; 
+}
+.item4 {
+  grid-column: 2;
+  grid-row: 2;
+}
+.item5 {
+  grid-column: 1 / span 2;
+  grid-row: 3;
+}
+.item6 {
+  grid-column: 1 / span 2;
+  grid-row: 4;
+}
+    </style>
     <title>Recipe Results</title>
   </head>
 
   <body>
-    <h1>Results</h1>
-    <p>The ingredients input are {{ ingredient1 }} and {{ ingredient2 }}.</p>
+    <nav class="w3-sidebar w3-bar-block w3-card w3-top w3-xlarge w3-animate-left" style="display:none;z-index:2;width:40%;min-width:300px" id="mySidebar">
+      <a href="javascript:void(0)" onclick="w3_close()"
+      class="w3-bar-item w3-button">Close Menu</a>
+      <a href="{{ url_for('welcome') }}" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+      <a href="{{ url_for('why') }}" onclick="w3_close()" class="w3-bar-item w3-button">About This Project</a>
+      <a href="{{ url_for('food_search') }}" onclick="w3_close()" class="w3-bar-item w3-button">Search Food</a>
+      <a href="{{ url_for('recipe_search') }}" onclick="w3_close()" class="w3-bar-item w3-button">Search Recipes</a>
+    </nav>   
+    <div class="w3-top">
+      <div class="w3-white w3-xlarge" style="max-width:1200px;margin:auto">
+        <div class="w3-button w3-padding-16 w3-left" onclick="w3_open()">☰</div>
+        <div class="w3-center w3-padding-16">Recipe Results</div>
+      </div>
+    </div>
+    <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px"></div>
+    
 
-    <p>The top recipe is: {{ recipe_title }}.</p>
-    <p>These are the ingredients: {{ ingredientsList }}.</p>
-    <p>This the link to the recipe website: {{ recipe_link }}.</p>
-    <p>This the recipe id: {{ recipe_id }}.</p>
+    <div class="grid-container">
+    <div class="grid-item item1"><p>The ingredients input are {{ ingredient1 }} and {{ ingredient2 }}.</p></div>
+    <div class="grid-item item2">The top recipe is: {{ recipe_title }}.</div>
+    <div class="grid-item item3"><img src="{{ image_url }}"></div>
+    <div class="grid-item item4"><p>These are the ingredients: {{ ingredientsList }}.</p></div>
+    <div class="grid-item item5"><p>This the link to the recipe website: {{ recipe_link }}.</p></div>
+    <div class="grid-item item6"><p>Nutrition Facts
+    <dl>
+      {% for key, value in recipe_nutrients.items() %}
+          <dt>{{ key|e }}</dt>
+          <dd>{{ value|e }}</dd>
+      {% endfor %}
+      </dl>
+    </p>
+    </div>
+    </div>
+      <script>
+        // Script to open and close sidebar
+        function w3_open() {
+          document.getElementById("mySidebar").style.display = "block";
+        }
+         
+        function w3_close() {
+          document.getElementById("mySidebar").style.display = "none";
+        }
+        </script>
   </body>
 </html>
